@@ -2,7 +2,6 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
@@ -24,11 +23,33 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>React Inquirer</title>
   </head>
-  <body>
+  <body class="overflow">
     <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="main-container" class="overflow">
+    <section class="intro-section" id="intro_section"  style="background: url(img/bg.png) center center / cover;">
+
+      <div class="container">
+        <div class="greetings">
+          <p><span style="color: rgb(40, 50, 78);"><strong>Вітаємо Вас!</strong></span></p>
+        </div>
+        <div class="description">
+          <p><span style="font-size: 14px;"><span style="font-family: Verdana,Geneva,sans-serif;"><span
+                  style="color: rgb(40, 50, 78);">Якість обслуговування – <strong>наш головний пріоритет</strong>, тому Ви завжди можете розраховувати на нас, якщо Ваші очікування не виправдались. Будь ласка, поділіться з нами своїми враженнями та побажаннями, а ми зробимо все, щоб Ви залишилися задоволені.</span></span>&nbsp;</span>
+          </p>
+          <p data-empty="true"><br></p>
+        </div>
+        <div class="btn-block">
+          <a href="javascript:;" id="start-poll" class="btn-pink start-poll">
+            Пройти опитування
+          </a>
+        </div>
+      </div>
+    </section>
+
     <div id="root"></div>
+    </div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
@@ -39,5 +60,11 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+  <script>
+      document.getElementById('start-poll').onclick = function() {
+            document.getElementById('main-container').classList.remove("overflow");
+            document.getElementById('main-container').scrollTop =  document.getElementById("intro_section").offsetHeight;
+      };
+  </script>
   </body>
 </html>
