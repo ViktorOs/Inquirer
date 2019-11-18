@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import QuestionContainer from './components/question_container'
-import Steps from './components/steps'
+
 import Thanks from './components/thanks'
 
 function App() {
@@ -8,7 +8,8 @@ function App() {
     const [fullData, setFullData] = useState({});
     const [thanks, setThanks] = useState(false);
 
-    const questionsArray = [{
+    const questionsArray = [
+        {
         "id": 28,
         "questionare_id": "5",
         "mask_id": null,
@@ -294,11 +295,9 @@ function App() {
             <section className="inquirer-section">
                 <div className="container">
                     <div className="questions-block">
-                        {thanks && <Thanks/>}
-
-                        {!thanks && <QuestionContainer storeData={storeData} setPrevQuestion={setPrevQuestion} fullLength={questionsArray.length} currentQuestionNumber={currentQuestion} question={questionsArray[currentQuestion]}/>}
-
-                        {!thanks && <Steps fullLength={questionsArray.length} currentQuestionNumber={currentQuestion}/>}
+                        {
+                            thanks ? <Thanks/> : <QuestionContainer storeData={storeData} setPrevQuestion={setPrevQuestion} fullLength={questionsArray.length} currentQuestionNumber={currentQuestion} question={questionsArray[currentQuestion]}/>
+                        }
                     </div>
                 </div>
             </section>

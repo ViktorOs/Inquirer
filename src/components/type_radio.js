@@ -1,43 +1,31 @@
 import React from 'react'
 
 export default class TypeRadio extends React.Component{
-    constructor() {
-        super();
-        this.state = {
-            btnDisabled: true,
-            value: 0
-        };
-        this.handleRadioChange = this.handleRadioChange.bind(this);
-        this.storeFormData = this.storeFormData.bind(this);
-    }
 
-    handleRadioChange(index) {
+    state = {
+        btnDisabled: true,
+        value: 0
+    };
+
+    handleRadioChange = (index) => {
         this.setState({
             btnDisabled: false,
             value:index
         });
-
-    }
+    };
 
     static submitHandler(e) {
         e.preventDefault();
     }
 
-    storeFormData() {
+    storeFormData = () => {
 
-        let object = {};
+        const { type, id } = this.props.question;
+        const { value } = this.state;
 
-        object["value"] = this.state.value;
+        this.props.storeData({[id]: { type, value }});
 
-        object["type"] = this.props.question.type;
-
-        let data = {};
-
-        data[this.props.question.id] = object;
-
-        this.props.storeData(data);
-
-    }
+    };
 
     render(){
 

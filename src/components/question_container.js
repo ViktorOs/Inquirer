@@ -3,20 +3,35 @@ import TypeRadio from './type_radio'
 import TypeRating from './type_rating'
 import TypeInput from './type_input'
 import TypeCallback from './type_callback'
+import Steps from './steps'
 
-export default function QuestionContainer({storeData, setPrevQuestion, question, currentQuestionNumber, fullLength }) {
+export default function QuestionContainer(props) {
 
+    let questionType;
 
-    switch(question.type) {
+    switch(props.question.type) {
+        default:
+            questionType = <TypeRadio {...props}/>;
+            break;
         case 'radio':
-            return  <TypeRadio key={currentQuestionNumber} storeData={storeData} setPrevQuestion={setPrevQuestion} question={question} currentQuestionNumber={currentQuestionNumber} fullLength={fullLength}/>;
+             questionType = <TypeRadio  {...props}/>;
+             break;
         case 'rating':
-            return  <TypeRating key={currentQuestionNumber} storeData={storeData} setPrevQuestion={setPrevQuestion} question={question} currentQuestionNumber={currentQuestionNumber} fullLength={fullLength}/>;
+             questionType = <TypeRating  {...props}/>;
+            break;
         case 'input':
-            return  <TypeInput key={currentQuestionNumber} storeData={storeData} setPrevQuestion={setPrevQuestion} question={question} currentQuestionNumber={currentQuestionNumber} fullLength={fullLength}/>;
+             questionType = <TypeInput  {...props}/>;
+            break;
         case 'callback':
-            return  <TypeCallback key={currentQuestionNumber} storeData={storeData} setPrevQuestion={setPrevQuestion} question={question} currentQuestionNumber={currentQuestionNumber} fullLength={fullLength}/>;
+             questionType = <TypeCallback  {...props}/>;
+            break;
     }
 
+    return(
+        <React.Fragment>
+            {questionType}
 
+            <Steps {...props}/>
+        </React.Fragment>
+    )
 }
